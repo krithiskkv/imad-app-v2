@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <title> Krithika's Blog App - Post an article </title>
+    <head>
+        <link link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-black.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body link="white" vlink="red">
+            <ul id="nav-bar" class="w3-navbar w3-theme-d2 w3-center">
+                <li> <a href="/" class="w3-teal"> <i class="fa fa-home w3-margin-right"></i> Back to Home</a> </li>
+            </ul> 
+            <br/>
+            <br/>
+            <div id="article-form">
+                <form class="w3-container w3-card-4 w3-light-grey">             
+                <h3 id="heading"> <center> Krithika's BlogApp - Guest Post submission form</center> </h3>
+                <p> <label> Author Name * </label> 
+                <input type=text class="w3-input w3-border" id=artauthorname placeholder="AuthorName"> 
+                </p>
+                <p> <label> Short Name of Article * </label> 
+                <input type=text class="w3-input w3-border" id=artshortname placeholder="ShortName"> 
+                </p> 
+                <p> <label> Heading *               </label>
+                <input type=text class="w3-input w3-border" id=artheading placeholder="Heading"> 
+                </p> 
+                <p> <label> Browser Tab Title *     </label> 
+                <input type=text class="w3-input w3-border" id=arttitle placeholder="Tab Title"> 
+                </p> 
+                <p> <label> Article Category *      </label> 
+                <select id=artcategory> 
+                    <option value="Personal">Personal</option>
+                    <option value="Professional">Professional</option>
+                </select> 
+                </p>
+                <p> <label> Article Image Link      </label> 
+                <input type=text class="w3-input w3-border" id=artimglink placeholder="Image Link"> 
+                </p>
+                <p> <label> Article Body *          </label> 
+                <br/>
+                <textarea rows="10" cols="80" class="scrollabletextbox w3-border" id="artcontent" name="article" ></textarea> 
+                </p>
+                <input type=submit id="subarticle_btn" value="Submit Article">
+                </form>
+                 </br>
+                 **Please allow 24 hours for your article to be posted under the selected category
+            </div>
+           
+            <hr/>           
+        
+            <center> 
+            <a href="https://twitter.com/intent/tweet?screen_name=krithiskkv" class="twitter-mention-button" data-text=" " data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <span>                </span>
+            <a target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=krithiskkv@gmail.com&body=Hi Krithika"><img src="/ui/Gmail.png" width="40" height="40" alt="Mail to krithiskkv@gmail.com" style="vertical-align:middle;" border="0"></a>
+            <span>                </span>
+            <a target="_blank" href="https://in.linkedin.com/pub/krithika-subramanian/131/a95/821" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="/ui/linkedin.png" width="40" height="40" alt="View Krithika Subramanian's LinkedIn profile" style="vertical-align:middle;" border="0">&nbsp;</span></a>
+            <a target="_blank" href="https://github.com/krithiskkv" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="/ui/github.png" width="40" height="40" alt="View Krithika Subramanian's Github repo" style="vertical-align:middle;" border="0">&nbsp;</span></a>
+            </center>
+         
+        
+        <script type="text/javascript" src="/ui/post.js">
+        </script>
+    </body>
+</html>
