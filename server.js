@@ -7,12 +7,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var config = {
-    user:'postgres',
-    database: 'postgres',
-    host: 'localhost',
+    user:'krithiskkv',
+    database: 'krithiskkv',
+    host: 'db.imad.hasura-app.io',
     port: '5432',
-    //password: process.env.DB_PASSWORD
-    password: 'Keshav1$'
+    password: process.env.DB_PASSWORD
+    //password: 'Keshav1$'
 };
 
 var pool = new Pool(config);
