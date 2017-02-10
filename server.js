@@ -7,11 +7,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var config = {
-    user:'krithiskkv',
-    database: 'krithiskkv',
-    host: 'db.imad.hasura-app.io',
+    user:'postgres',
+    database: 'postgres',
+    host: 'localhost',
     port: '5432',
-    password: 'db-krithiskkv-77739' 
+    //password: process.env.DB_PASSWORD
+    password: 'Keshav1$'
 };
 
 var pool = new Pool(config);
@@ -39,19 +40,19 @@ function createTemplate (data) {
     
     var htmlTemplate = `<!DOCTYPE html>
                             <html>
-                            <title>W3.CSS Template</title>
+                            <title>${title}</title>
                             <meta charset="UTF-8">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
                             <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
                             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
                             <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-black.css">
-                            <link rel="stylesheet" href="/ui/style.css"
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                            <link rel="stylesheet" href="/ui/style.css">
                             <style>
                             body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             </style>
                             <ul id="nav-bar" class="w3-navbar w3-theme-d2 w3-center">
-                              <li> <a href="/" class="w3-teal"> <i class="fa fa-home w3-margin-right"></i> Back to Home</a> </li>
+                              <li> <a href="/" class="w3-teal"> <i class="fa fa-home"></i> Back to Home</a> </li>
                             </ul>
                             <body class="w3-light-grey">
 
@@ -77,8 +78,8 @@ function createTemplate (data) {
                                    ${content} 
                                   <div class="w3-row">
                                     <div class="w3-col m8 s12">
-                                      <p><button class="w3-btn w3-padding-large w3-white w3-border w3-hover-border-black"><b>Comments</b> <i class="fa fa-comments w3-margin-right"></i><span class="w3-tag">${cmntcnt}</span></button>
-                                      <button id="counter" class="w3-btn w3-padding-large w3-white w3-border w3-hover-border-black"><b>Likes</b> <i class="fa fa-thumbs-up w3-margin-right"></i><span id="count">   </span> </button>
+                                      <p><button id="cmntlink" class="w3-btn w3-teal w3-padding-large w3-border w3-hover-border-black"> <i class="fa fa-comments"><b>Comments</b></i><span class="w3-tag">  ${cmntcnt}</span></button>
+                                      <button id="counter" class="w3-btn w3-teal w3-padding-large w3-border w3-hover-border-black"><b>Like</b> <i class="fa fa-thumbs-up"></i> </button> <span id="count">   </span> <span> Likes </span> 
                                       </p>
                                     </div>
                                   </div>
@@ -86,14 +87,7 @@ function createTemplate (data) {
                               </div>
                               <hr>
                             </div>
-
-                            <div class="w3-container">  
-                              <a href="#top"> Go To Top </a>
-                              <br>
-                              <h3> Comments </h3>
-                              <p id="cmntInput"></p>
-                              <ul id="commlist" style="height:250; overflow:auto; list-style-type: none;"> </ul>
-                            </div>  
+                           
                                           <!-- Introduction menu -->
                             <div class="w3-col l4">
                               <!-- About Card -->
@@ -119,6 +113,13 @@ function createTemplate (data) {
                               </div>
                               <hr> 
                               <!-- END Introduction Menu -->
+                            <div class="w3-container">  
+                              <a href="#top"> Go To Top </a>
+                              <br>
+                              <h3> Comments </h3>
+                              <p id="cmntInput"></p>
+                              <ul id="commlist" style="height:250; overflow:auto; list-style-type: none;"> </ul>
+                            </div>
                             </div>
                             <!-- END GRID -->
                             </div><br>
@@ -127,7 +128,7 @@ function createTemplate (data) {
                             <!-- Footer -->
                             <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
                               <button class="w3-btn w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-                              <button class="w3-btn w3-padding-large w3-margin-bottom">Next Â»</button>
+                              <button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button>
                               <div class="w3-center"
                               <h4>Follow Me</h4>
                               </br>
@@ -290,7 +291,7 @@ app.get('/ui/articles.js', function (req, res) {
 app.get('/ui/background-2.jpg', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'background-2.jpg'));
 });
-
+ 
 
 app.get('/ui/office.jpg', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'office.jpg'));
@@ -328,6 +329,13 @@ app.get('/ui/imad.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'imad.png'));
 });
 
+app.get('/ui/schema.docx', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'schema.docx'));
+});
+
+app.get('/ui/architecture.pptx', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'architecture.pptx'));
+});
 // /initcounter/articleName obtains the current Likes counter for an article 
 
 var counter = 0;
@@ -363,6 +371,7 @@ app.get('/initcmnt/:articleName', function(req, res) {
     commentsData = [];
     pool.query("SELECT b.comment, b.user_name, b.date, a.cmntcnt FROM article AS a, comment AS b WHERE articlename = $1 AND article_id = id ORDER BY b.date DESC, b.time DESC", [req.params.articleName], function(err, result) {
         if (err) {
+            console.log(err);          
             res.status(500).send(err.toString()); }
         else { 
             if (result.rows.length === 0) {
