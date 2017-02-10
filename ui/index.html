@@ -14,11 +14,9 @@
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-xxxlarge w3-text-teal">Close
     <i class="fa fa-remove"></i>
   </a>
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
-  <a href="#">Link 4</a>
-  <a href="#">Link 5</a>
+  <a href="/ui/architecture.pptx">Architecture</a>
+  <a href="/ui/schema.docx">DB Schema</a>
+  <a href="https://github.com/krithiskkv/imad-app-v2">Code Repository</a>
 </nav>
 
 <!--Login modal form on click -->
@@ -52,15 +50,15 @@
         <span onclick="document.getElementById('id02').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Close Modal">&times;</span>
       </div>
 
-      <form class="w3-container" action="form.asp">
+      <!-- <form class="w3-container" action="form.asp"> -->
         <div class="w3-section">
           <label><b>Username</b></label>
-          <input id="username" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
+          <input id="newusername" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
           <label><b>Password</b></label>
-          <input id="password" class="w3-input w3-border" type="password" placeholder="Set A Password" name="psw" required>
+          <input id="newpassword" class="w3-input w3-border" type="password" placeholder="Set A Password" name="psw" required>
           <button class="w3-btn-block w3-teal w3-section w3-padding" type="submit" id="Register">Sign-up</button>
-          </div>
-      </form>
+        </div>
+      <!-- </form> -->
       <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
         <button onclick="document.getElementById('id02').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
       </div>
@@ -196,14 +194,14 @@
 <div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
   <div class="w3-row">
     <div class="w3-col m5">
-    <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
+    <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Me</span></div>
       <h3>Address</h3>
       <p>Swing by for a cup of coffee, or whatever.</p>
-      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>Â Â Chicago, US</p>
-      <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>Â Â +00 1515151515</p>
-      <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>Â Â test@test.com</p>
+      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i>  Chennai, IND</p>
+      <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>  +91 123457890</p>
+      <p><i class="fa fa-envelope-o w3-text-teal w3-xlarge"></i>  krithiskkv@gmail.com</p>
     </div>
-    <div class="w3-col m7">
+    <!-- <div class="w3-col m7">
       <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="form.asp" target="_blank">
       <div class="w3-group">      
         <label class="w3-label">Name</label>
@@ -221,7 +219,7 @@
       <label class="w3-validate">I Like it!</label>
       <button type="submit" class="w3-btn w3-right w3-theme">Send</button>
       </form>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -232,7 +230,7 @@
 <div id="googleMap" style="width:100%;height:420px;"></div>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+var myCenter = new google.maps.LatLng(13.0524, 80.2508);
 
 function initialize() {
 var mapProp = {
