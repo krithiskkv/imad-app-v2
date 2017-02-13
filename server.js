@@ -12,7 +12,6 @@ var config = {
     host: 'db.imad.hasura-app.io',
     port: '5432',
     password: process.env.DB_PASSWORD
-    //password: 'Keshav1$'
 };
 
 var pool = new Pool(config);
@@ -128,7 +127,7 @@ function createTemplate (data) {
                             <!-- Footer -->
                             <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
                               <button class="w3-btn w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-                              <button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button>
+                              <button class="w3-btn w3-padding-large w3-margin-bottom">Next Â»</button>
                               <div class="w3-center"
                               <h4>Follow Me</h4>
                               </br>
