@@ -176,6 +176,7 @@ app.post('/create-user', function(req, res) {
     if (username.trim().length > 0 && password.trim().length > 0) {
         pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function(err, result) {
         if (err) {
+           console.log(err);
            res.status(500).send(err.toString()); }
         else {
              res.send('User successfully created' + username); }
@@ -191,7 +192,8 @@ app.post('/login', function(req, res) {
     if (username.trim().length > 0 && password.trim().length > 0) {
     pool.query('SELECT * FROM "user" WHERE username = $1', [username], function(err, result) {
         if (err) {
-           res.status(500).send(err.toString()); }
+            console.log(err);              
+            res.status(500).send(err.toString()); }
         else {
             if (result.rows.length === 0) {
                 res.status(403).send('Username/passsword is invalid!');
@@ -218,6 +220,7 @@ app.get('/check-login', function(req, res) {
    if (req.session && req.session.auth && req.session.auth.userId ) {
        pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err,result) {
            if (err) {
+               console.log(err);
                res.status(500).send('An error occured');
            }
            else {
