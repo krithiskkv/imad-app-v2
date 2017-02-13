@@ -20,6 +20,23 @@ function escapeHTML (text)
     $div.appendChild($text);
     return $div.innerHTML;
 }
+var list1 = `<div class="row">
+                <div class="col-sm-1">
+                <div class="thumbnail">
+                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" width="50" height="50">
+                </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+                <div class="col-sm-5">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                <strong>`
+var list2 = `</strong> <span class="text-muted"> on `
+var list3 = `</span>
+             </div>
+             <div class="panel-body">`
+var list4 = `</div><!-- /panel-body -->
+             </div><!-- /panel panel-default -->
+             </div><!-- /col-sm-5 -->`
 
 // request server for the current comment list and render the comments
 var initcommrequest = new XMLHttpRequest();
@@ -27,27 +44,9 @@ initcommrequest.onreadystatechange = function () {
     if (initcommrequest.readyState === XMLHttpRequest.DONE) {
     if (initcommrequest.status === 200) {
         var commentsData = JSON.parse(this.responseText);
-        var list1 = `<div class="row">
-                        <div class="col-sm-1">
-                        <div class="thumbnail">
-                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                        </div><!-- /thumbnail -->
-                        </div><!-- /col-sm-1 -->
-                        <div class="col-sm-5">
-                        <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <strong>`
-        var list2 = `</strong> <span class="text-muted">commented on`
-        var list3 = `</span>
-                     </div>
-                     <div class="panel-body">`
-        var list4 = `</div><!-- /panel-body -->
-                     </div><!-- /panel panel-default -->
-                     </div><!-- /col-sm-5 -->`
-
         var list = '';
         for (var i=0;i<commentsData.length;i++) {
-          list += '<li class="comment">' + list1 + escapeHTML(commentsData[i].user_name) + list2 + + commentsData[i].date.split('T')[0]  + list3 + escapeHTML(commentsData[i].comment) + list4 + '<br/>';
+          list += '<li class="comment">' + list1 + escapeHTML(commentsData[i].user_name) + list2 + commentsData[i].date.split('T')[0]  + list3 + escapeHTML(commentsData[i].comment) + list4 + '<br/>';
           }
         var ul = document.getElementById('commlist');
         ul.innerHTML = list;
@@ -67,7 +66,7 @@ checkrequest.onreadystatechange = function() {
                 <br/>
                 <textarea rows="2" cols="50" class="scrollabletextbox" id="comment" name="comments" ></textarea>
                 <br/>
-                <input type="submit" id="submit_btn" value="Submit"> </input>`;
+                <button id="submit_btn" class="w3-btn w3-teal w3-padding-large w3-border w3-hover-border-black"> <b>Submit</b> </button>`;
             document.getElementById('cmntInput').innerHTML = cmntarea;
             document.getElementById('comment').addEventListener("keyup",function(event) {
                 if (event.keyCode == 13 ) {
@@ -88,12 +87,12 @@ checkrequest.onreadystatechange = function() {
                             var commentsData = JSON.parse(this.responseText);
                             var list = '';
                             for (var i=0;i<commentsData.length;i++) {
-                              list += '<li class="comment">' + escapeHTML(commentsData[i].comment)  + '<small>' + '-- ' + escapeHTML(commentsData[i].user_name) + ' ' + commentsData[i].date.split('T')[0] + '</small>' + '</li>' + '<br/>'
+                              list += '<li class="comment">' + list1 + escapeHTML(commentsData[i].user_name) + list2 + commentsData[i].date.split('T')[0]  + list3 + escapeHTML(commentsData[i].comment) + list4 + '<br/>';
                             }
                             var ul = document.getElementById('commlist');
                             ul.innerHTML = list;
                             var cmntlink = document.getElementById('cmntlink');
-                            var cmntstring = commentsData[0].cmntcnt + ' comments';
+                            var cmntstring = '<i class="fa fa-comments"><b>Comments</b></i><span class="w3-tag">'  + commentsData[0].cmntcnt + '</span>';
                             cmntlink.innerHTML = cmntstring;
                             }
                         } 
