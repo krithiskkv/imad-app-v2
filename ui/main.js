@@ -118,6 +118,7 @@ function buildLogin() {
         }
         else {
             alert('Username/password cannot be blank');
+            button2.innerHTML = 'Sign-in';
         }
     };
 
@@ -125,8 +126,8 @@ function buildLogin() {
     button3.onclick = function () {
         button3.innerHTML = 'Registering..';
         var request = new XMLHttpRequest();
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
+        var username = document.getElementById('newusername').value;
+        var password = document.getElementById('newpassword').value;
         if (username.trim().length > 0 && password.trim().length > 0) {
             request.onreadystatechange = function() {
                 if (request.readyState === XMLHttpRequest.DONE) {
@@ -136,8 +137,8 @@ function buildLogin() {
                     }
                     else if (request.status === 500) {
                         alert('An error occured');
-                        document.getElementById('username').value = '';
-                        document.getElementById('password').value = '';
+                        document.getElementById('newusername').value = '';
+                        document.getElementById('newpassword').value = '';
                     }
                 button3.innerHTML = 'Register';
                 }
@@ -148,6 +149,7 @@ function buildLogin() {
         }
         else {
             alert('Username/password cannot be blank');
+            button3.innerHTML = 'Register'
         }
     };
 }
@@ -211,7 +213,6 @@ function buildLogout(username) {
     var loginarea = document.getElementById('loginarea');
     loginarea.innerHTML = '<a href="/logout" class="w3-btn w3-teal w3-medium"> Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a>';
 }
-
 
 
 
