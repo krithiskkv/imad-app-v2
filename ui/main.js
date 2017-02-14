@@ -6,6 +6,9 @@ loadProfArticles();
 function buildpost() {
     var post_btn = document.getElementById('post_btn');
     post_btn.innerHTML = '<a href="/post-article">Post Article</a>';
+    
+    var post_btn_small = document.getElementById('post_btn_small');
+    post_btn_small.innerHTML = '<a href="/post-article">Post Article</a>';
 }
 
 function checkLogin() {
