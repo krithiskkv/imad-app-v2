@@ -30,6 +30,7 @@ function loadPersArticles() {
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             var articles = document.getElementById('PersList');
+            var articles_small = document.getElementById('PersList_small');
             if (request.status === 200) {
                 var content = '';
                 var articleData = JSON.parse(this.responseText);
@@ -38,8 +39,10 @@ function loadPersArticles() {
                     content += `<a href="/articles/${articleName}" class="w3-btn w3-teal w3-medium">${articleName}</a>`;
                 }
                 articles.innerHTML = content;
+                articles_small.innerHTML = content;
             } else {
                 articles.innerHTML('Oops! Could not load all articles!');
+                articles_small.innerHTML('Oops! Could not load all articles!');
             }
         }
 };
@@ -53,6 +56,7 @@ function loadProfArticles() {
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             var articles = document.getElementById('ProfList');
+            var articles_small = document.getElementById('ProfList_small');
             if (request.status === 200) {
                 //var content = '<ul>';
                 var content = '';
@@ -64,8 +68,10 @@ function loadProfArticles() {
                 }
                 //content += "</ul>";
                 articles.innerHTML = content;
+                articles_small.innerHTML = content;
             } else {
                 articles.innerHTML('Oops! Could not load all articles!');
+                articles_small.innerHTML('Oops! Could not load all articles!');
             }
         }
 };
@@ -77,9 +83,14 @@ function loadProfArticles() {
 //build login/registration form
 function buildLogin() {
     var loginbtn = document.getElementById('loginbtn');
+    var loginbtn_small = document.getElementById('loginbtn_small');
     loginbtn.innerHTML = 'Login/Sign-up';
+    loginbtn_small.innerHTML = 'Login/Sign-up';
     var loginarea = document.getElementById('loginarea');
+    var loginarea_small = document.getElementById('loginarea_small');
     loginarea.innerHTML = `<button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-teal w3-medium">Login</button>
+                           <button onclick="document.getElementById('id02').style.display='block'" class="w3-btn w3-teal w3-medium">Sign-up</button>`;
+    loginarea_small.innerHTML = `<button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-teal w3-medium">Login</button>
                            <button onclick="document.getElementById('id02').style.display='block'" class="w3-btn w3-teal w3-medium">Sign-up</button>`;
     var button2 = document.getElementById('Login');
     button2.onclick = function () {
@@ -210,8 +221,12 @@ function escapeHTML (text)
 function buildLogout(username) { 
     var loginbtn = document.getElementById('loginbtn');
     loginbtn.innerHTML = 'Hi, ' + escapeHTML(username) + '<small>▼</small>';
+    var loginbtn_small = document.getElementById('loginbtn_small');
+    loginbtn_small.innerHTML = 'Hi, ' + escapeHTML(username) + '<small>▼</small>';
     var loginarea = document.getElementById('loginarea');
     loginarea.innerHTML = '<a href="/logout" class="w3-btn w3-teal w3-medium"> Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a>';
+    var loginarea_small = document.getElementById('loginarea_small');
+    loginarea_small.innerHTML = '<a href="/logout" class="w3-btn w3-teal w3-medium"> Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a>';
 }
 
 
